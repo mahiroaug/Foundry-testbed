@@ -33,6 +33,7 @@ export const privateKeys = {
 };
 
 
+export const owner = privateKeyToAccount(privateKeys.privateKey0 as `0x${string}`)
 export const ray   = privateKeyToAccount(privateKeys.privateKey1 as `0x${string}`)
 export const alice = privateKeyToAccount(privateKeys.privateKey5 as `0x${string}`)
 export const bob   = privateKeyToAccount(privateKeys.privateKey6 as `0x${string}`)
