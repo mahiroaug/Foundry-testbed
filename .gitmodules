@@ -1,0 +1,3 @@
+[submodule "lib/openzeppelin-contracts"]
+	path = exp_EIP7702_a/lib/openzeppelin-contracts
+	url = https://github.com/OpenZeppelin/openzeppelin-contracts
