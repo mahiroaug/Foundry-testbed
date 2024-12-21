@@ -1,13 +1,26 @@
 import { parseEther } from 'viem'
-import { walletClient } from './config'
+import { addresses, alice, bob, carol, dave, eve, ray, walletClient } from './config'
 import { abi, contractAddress } from './contract'
-import { privateKeyToAccount } from 'viem/accounts'
 
-const delegate = privateKeyToAccount('0x2a871d0798f97d79848a013d4936a73bf4cc922c825d33c1cf7073dff6d409c6') // No.9
-
+const delegate = ray;
 
 async function executeTransactions() {
   try {
+    if (!contractAddress) {
+      throw new Error('Contract address is not defined');
+    }
+
+    console.log('contractAddres    :', contractAddress)
+    console.log('walletClient.acc  :', walletClient.account.address)
+    console.log('alice.address     :', alice.address)
+    console.log('bob.address       :', bob.address)
+    console.log('carol.address     :', carol.address)
+    console.log('dave.address      :', dave.address)
+    console.log('eve.address       :', eve.address)
+    console.log('ray.address       :', ray.address)
+
+
+
     const authorization = await walletClient.signAuthorization({
       contractAddress,
       delegate,
@@ -20,11 +33,11 @@ async function executeTransactions() {
       args: [[ 
         { 
           data: '0x', 
-          to: '0x3C44CdDdB6a900fa2b585dd299e03d12FA4293BC',  
+          to: dave.address,
           value: parseEther('0.1'),  
         }, { 
           data: '0x', 
-          to: '0x90F79bf6EB2c4f870365E785982E1f101E93b906',  
+          to: eve.address,
           value: parseEther('0.2'),  
         } 
       ]], 

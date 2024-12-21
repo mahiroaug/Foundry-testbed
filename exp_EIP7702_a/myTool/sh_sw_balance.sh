@@ -1,8 +1,9 @@
 #!/bin/bash
 
-# 各アカウントの残高を確認
+export $(grep -v '^#' .env | xargs)
+
 ACCOUNTS=(
-    "0x5FbDB2315678afecb367f032d93F642f64180aa3"
+    "$CA_BATCH_CALL_DELEGATION"
 )
 
 i=0

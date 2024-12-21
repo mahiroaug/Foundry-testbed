@@ -1,3 +1,6 @@
+import dotenv from 'dotenv';
+dotenv.config();
+
 export const abi = [
   {
     "type": "function",
@@ -27,4 +30,5 @@ export const abi = [
   },
 ] as const
  
-export const contractAddress = '0x5FbDB2315678afecb367f032d93F642f64180aa3'
+export const CA_BATCH_CALL_DELEGATION = process.env.CA_BATCH_CALL_DELEGATION as `0x${string}`;
+export const contractAddress = CA_BATCH_CALL_DELEGATION;

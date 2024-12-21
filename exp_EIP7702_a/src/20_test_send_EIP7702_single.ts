@@ -1,33 +1,41 @@
 import { encodeFunctionData,parseEther } from 'viem'
-import { walletClient } from './config'
+import { alice, bob, carol, dave, eve, walletClient } from './config'
 import { abi, contractAddress } from './contract'
  
 async function executeTransactions() {
   try {
+
+    console.log('contractAddres    :', contractAddress)
+    console.log('walletClient.acc  :', walletClient.account.address)
+    console.log('alice.address     :', alice.address)
+    console.log('bob.address       :', bob.address)
+    console.log('carol.address     :', carol.address)
+    console.log('dave.address      :', dave.address)
+    console.log('eve.address       :', eve.address) 
+
+
     const authorization = await walletClient.signAuthorization({
       contractAddress,
     })
     
     const hash = await walletClient.sendTransaction({ 
       authorizationList: [authorization], 
+      to: walletClient.account.address, 
       data: encodeFunctionData({
         abi,
-        functionName: 'execute',
-        args: [
-          [
-            {
-              data: '0x',
-              to: '0x3C44CdDdB6a900fa2b585dd299e03d12FA4293BC',
-              value: parseEther('0.1'),
-            }, {
-              data: '0x',
-              to: '0x90F79bf6EB2c4f870365E785982E1f101E93b906',
-              value: parseEther('0.2'),
-            }
-          ],
-        ]
+        functionName: 'execute', 
+        args: [[ 
+          { 
+            data: '0x', 
+            to: dave.address,
+            value: parseEther('0.1'),  
+          }, { 
+            data: '0x', 
+            to: eve.address,
+            value: parseEther('0.2'),  
+          } 
+        ]], 
       }),
-      to: walletClient.account.address, 
     })
 
     console.log('success TxID:', hash)
