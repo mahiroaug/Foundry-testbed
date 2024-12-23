@@ -19,6 +19,7 @@ anvil --hardfork prague
 
 ```bash
 cd exp_EIP7702_a
+forge install OpenZeppelin/openzeppelin-contracts
 ./myTool/01_anvil_deployContract.sh
 ```
 contract owner is `ACCOUNT_0`
